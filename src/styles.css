@@ -1,2 +1,14 @@
-@import "frontend_assets/assets/css/dashlite.css";
-@import "frontend_assets/assets/css/theme.css";
+@import "../public/css/dashlite.css";
+@import "../public/css/theme.css";
+@import 'ngx-toastr/toastr';
+/* validation error color */
+.text-secondary2
+{
+  color:red
+}
+
+.toast-top-right {
+    top: 12px !important;
+    right: 12px !important;
+}
+

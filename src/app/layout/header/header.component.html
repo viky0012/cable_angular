@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">Administrator</div>
-                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                    <div class="user-name dropdown-indicator">{{name | titlecase}}</div>
                                 </div>
                             </div>
                         </a>
@@ -30,11 +30,12 @@
                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                 <div class="user-card">
                                     <div class="user-avatar">
-                                        <span>AB</span>
+                                        <!-- <span>AB</span> -->
+                                        <em class="icon ni ni-user-alt"></em>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                        <span class="sub-text">info&#64;softnio.com</span>
+                                        <span class="lead-text">{{name | titlecase}}</span>
+                                        <span class="sub-text">{{email}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +45,8 @@
                                 </ul>
                             </div>
                             <div class="dropdown-inner">
-                                <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                <ul class="link-list" >
+                                    <li><a (click)="open_sign_out_model(sign_out_model)"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -56,3 +57,18 @@
     </div>
 
 <!-- main header @e -->
+
+<ng-template #sign_out_model let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Sign Out</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="sign_out()">Yes</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('No')">No</button>
+    </div>
+  </ng-template>
+  

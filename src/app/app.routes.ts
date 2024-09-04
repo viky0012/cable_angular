@@ -10,12 +10,18 @@ import { CustomerComponent } from './super-admin/customer/customer.component';
 import { PlanComponent } from './super-admin/plan/plan.component';
 import { SubscriptionComponent } from './super-admin/subscription/subscription.component';
 import { TransactionsComponent } from './super-admin/transactions/transactions.component';
-
+//route guard
+import { authGuard } from './guard/auth.guard';
 export const routes: Routes = [
 
     // login
     {
         path:'',
+        component:LoginComponent
+    },
+    // login
+    {
+        path:'login',
         component:LoginComponent
     },
 
@@ -27,9 +33,14 @@ export const routes: Routes = [
 
     // super admin dashboard
     {
-        path:'superadmin/dashboard',
-        component:HomeComponent
-    },
+        path: 'dashboard',
+        canActivate: [authGuard],
+        children: [
+          { path: '', component: HomeComponent },  // Default route for dashboard
+          { path: 'home', component: HomeComponent },
+          // Add more child routes here if needed
+        ]
+      },
 
     // super admin dashboard - admin
     {
