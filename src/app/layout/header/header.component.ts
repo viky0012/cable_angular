@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -9,10 +8,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit,AfterViewInit {
   token:any;
   name:any;
   email:any;
+  modalElement: any;
   ngOnInit(): void {
     this.token = localStorage.getItem('w2d_access_token');
     if(this.token) 
@@ -22,11 +22,18 @@ export class HeaderComponent implements OnInit{
         this.email=jwtToken['enC_request']['email'];  
     }
   }
-  constructor(private router:Router, 	private modalService:NgbModal){}
+  ngAfterViewInit() {
+    // Get the modal element
+    const modalEl = document.getElementById('modalDefault');
+    // Initialize the modal with Bootstrap's modal JavaScript API
+    this.modalElement = new (window as any).bootstrap.Modal(modalEl);
+  }
+  constructor(private router:Router){}
 
-  open_sign_out_model(content:any)
+  open_sign_out_model()
   {
-     this.modalService.open(content, { size: 'sm' });
+    //  this.modalService.open(content, { size: 'sm' });
+    this.modalElement.show();
   }
   sign_out()
   {

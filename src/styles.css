@@ -1,14 +1,10 @@
 @import "../public/css/dashlite.css";
 @import "../public/css/theme.css";
-@import 'ngx-toastr/toastr';
+/* @import 'ngx-toastr/toastr'; */
 /* validation error color */
 .text-secondary2
 {
   color:red
 }
 
-.toast-top-right {
-    top: 12px !important;
-    right: 12px !important;
-}
 
